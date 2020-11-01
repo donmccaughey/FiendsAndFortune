@@ -13,6 +13,7 @@ target_include_directories(base
         )
 
 add_executable(base_tests
+        alloc_or_die_test.c
         base_tests.c
         int_test.c
         ptr_array_test.c

@@ -174,6 +174,10 @@ vasprintf_or_die(char **string, const char *format, va_list arguments)
 
 ////////// Miscellaneous Functions //////////
 
+char *
+basename_or_die(char const *path);
+
+
 // Allocates a zero-terminated string containing the absolute pathname of the
 // current working directory.  Increments `alloc_or_die_count' and returns the
 // string on success.  On failure, prints the error message for `errno' to

@@ -25,6 +25,7 @@
 #include "alloc_or_die.h"
 
 #include <errno.h>
+#include <libgen.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -68,6 +69,21 @@ asprintf_or_die(char **string, char const *format, ...)
     int result = vasprintf_or_die(string, format, arguments);
     va_end(arguments);
     return result;
+}
+
+
+char *
+basename_or_die(char const *path)
+{
+    char *path_copy = strdup_or_die(path ? path : "");
+    char *result = basename(path_copy);
+    if (result == path_copy) {
+        return result;
+    } else {
+        char *name = strdup_or_die(result);
+        free_or_die(path_copy);
+        return name;
+    }
 }
 
 
